@@ -1,4 +1,6 @@
 // pages/list/list.js
+const initData = 'this is first line\nthis is second line'
+const extraLine = []
 Page({
 
   /**
@@ -19,13 +21,50 @@ Page({
       { id: 1, unique: 'unique_1' },
       { id: 0, unique: 'unique_0' },
     ],
-    numberArray: [1, 2, 3, 4]
+    numberArray: [1, 2, 3, 4],
+    iconSize: [20, 30, 40, 50, 60, 70],
+    iconColor: [
+      'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple'
+    ],
+    iconType: [
+      'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear'
+    ],
+    text: initData,
+    nodes: [{
+      name: 'div',
+      attrs: {
+        class: 'div_class',
+        style: 'line-height: 60px; color: red;'
+      },
+      children: [{
+        type: 'text',
+        text: 'Hello&nbsp;World!'
+      }, {type: 'text',
+        text: 'Hello&nbsp;DCF!'}]
+    }]
   },
-  add(){
-   this.setData({
-     count:this.data.count +1
-   })
+  tap() {
+    console.log('tap')
   },
+  add(e) {
+    extraLine.push('other line')
+    this.setData({
+      text: initData + '\n' + extraLine.join('\n')
+    })
+  },
+  remove(e) {
+    if (extraLine.length > 0) {
+      extraLine.pop()
+      this.setData({
+        text: initData + '\n' + extraLine.join('\n')
+      })
+    }
+  },
+  // add(){
+  //  this.setData({
+  //    count:this.data.count +1
+  //  })
+  // },
   switch(e) {
     const length = this.data.objectArray.length
     for (let i = 0; i < length; ++i) {

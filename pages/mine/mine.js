@@ -1,68 +1,84 @@
 // pages/mine/mine.js
+const order = ['red', 'yellow', 'blue', 'green', 'red']
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    toView: 'red',
+    scrollTop: 100,
+     imgUrls: [
+      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+    ],
+    indicatorDots: false,
+    autoplay: false,
+    interval: 5000,
+    duration: 1000,
+    x: 0,
+    y: 0
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  tap(e) {
+    this.setData({
+      x: 30,
+      y: 30
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onChange(e) {
+    console.log(e.detail)
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    var object = getCurrentPages()
-    console.log(object)
-    console.log('mine')
+  onScale(e) {
+    console.log(e.detail)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  changeIndicatorDots(e) {
+    this.setData({
+      indicatorDots: !this.data.indicatorDots
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  changeAutoplay(e) {
+    this.setData({
+      autoplay: !this.data.autoplay
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  intervalChange(e) {
+    this.setData({
+      interval: e.detail.value
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  durationChange(e) {
+    this.setData({
+      duration: e.detail.value
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  upper(e) {
+    console.log(e)
+  },
+  lower(e) {
+    console.log(e)
+  },
+  scroll(e) {
+    console.log(e)
+  },
+  tap(e) {
+    for (let i = 0; i < order.length; ++i) {
+      if (order[i] === this.data.toView) {
+        this.setData({
+          toView: order[i + 1]
+        })
+        break
+      }
+    }
+  },
+  tapMove(e) {
+    this.setData({
+      scrollTop: this.data.scrollTop + 10
+    })
+  } ,
+  onReady() {
+    this.videoCtx = wx.createVideoContext('myVideo')
+  },
+  play() {
+    this.videoCtx.play()
+  },
+  pause() {
+    this.videoCtx.pause()
   }
 })
