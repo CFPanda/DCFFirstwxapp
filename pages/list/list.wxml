@@ -1,0 +1,29 @@
+<!--pages/list/list.wxml-->
+<view wx:for="{{array}}">{{item}}</view>
+<view wx:if="{{view == 'WEBVIEW'}}">WEBVIEW</view>
+<view wx:elif="{{view == 'APP'}}">APP</view>
+<view wx:else="{{view == 'MINA'}}">MINA</view>
+<template name="staffName">
+  <view>
+    FirstName: {{firstName}}, LastName: {{lastName}}
+  </view>
+</template>
+
+<template is="staffName" data="{{...staffA}}"></template>
+<template is="staffName" data="{{...staffB}}"></template>
+<template is="staffName" data="{{...staffC}}"></template>
+
+<view bindtap="add">{{count}}</view>
+
+<checkbox checked="{{false}}"></checkbox>
+
+<switch wx:for="{{objectArray}}" wx:key="unique" style="display: block;">
+  {{item.id}}
+</switch>
+<button bindtap="switch">Switch</button>
+<button bindtap="addToFront">Add to the front</button>
+
+<switch wx:for="{{numberArray}}" wx:key="*this" style="display: block;">
+  {{item}}
+</switch>
+<button bindtap="addNumberToFront">Add to the front</button>

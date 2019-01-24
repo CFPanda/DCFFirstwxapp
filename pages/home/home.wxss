@@ -1,0 +1,18 @@
+/* pages/home/home.wxss */
+.dcf {
+  font-size: 20px; 
+  font-weight: bold;
+  color: #0066FF;
+  background:#FF9933;
+}
+
+.dcf1 {
+  background-position: center
+}
+
+.wyx {
+  font-size: 20px; 
+  font-weight: bold;
+  color: #FF9933;
+  background:#0066FF;
+}
